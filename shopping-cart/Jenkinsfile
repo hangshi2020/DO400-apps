@@ -21,7 +21,7 @@ pipeline {
  }
 
 
-  stage('Security Scan before deploy') {
+ stage('Security Scan before deploy') {
    steps {
       dir('shopping-cart') {
        sh """
@@ -30,9 +30,7 @@ pipeline {
          -p PROJECT_NAME=${APP_NAMESPACE} \
          -p CVE_CODE=CVE-2020-14583 | oc replace --force -n ${APP_NAMESPACE} -f -
          """
-         sh "! ../tools/check-job-state.sh security-scans-trivy
- ${APP_NAMESPACE}"
-        
+         sh "! ../tools/check-job-state.sh security-scans-trivy ${APP_NAMESPACE}"
       }
    }
   } 
