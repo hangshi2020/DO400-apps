@@ -19,7 +19,9 @@ pipeline {
  }
  }
  }
-  stage('Security Scan') {
+
+
+  stage('Security Scan before deploy') {
    steps {
       dir('shopping-cart') {
        sh """
